@@ -1,0 +1,21 @@
+{
+  "$schema": "../schema/bandit-codes.schema.json",
+  "version": 1,
+  "type": "link",
+  "content": {
+    "url": "https://example.com/with-logo"
+  },
+  "style": {
+    "preset": "alley",
+    "errorCorrection": "H"
+  },
+  "image": {
+    "mode": "logo",
+    "src": "./assets/sample-logo.png",
+    "scale": 0.22
+  },
+  "output": {
+    "format": "png",
+    "file": "logo.png"
+  }
+}

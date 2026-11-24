@@ -1,0 +1,1567 @@
+{
+  "title": "Bandit Codes config",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "link"
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "campaign": {
+              "type": "object",
+              "properties": {
+                "source": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "medium": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "campaign": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "content": {
+                  "type": "string",
+                  "maxLength": 100
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "type": "number",
+          "const": 1
+        },
+        "style": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "preset": {
+              "type": "string",
+              "enum": [
+                "classic",
+                "alley",
+                "mint",
+                "coral",
+                "dusk",
+                "ink"
+              ]
+            },
+            "dotColor": {
+              "default": "#000000",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "cornerColor": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "backgroundColor": {
+              "default": "#FFFFFF",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "dotShape": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "dot"
+              ]
+            },
+            "cornerStyle": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "circle"
+              ]
+            },
+            "quietZone": {
+              "default": 4,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 16
+            },
+            "errorCorrection": {
+              "default": "M",
+              "type": "string",
+              "enum": [
+                "L",
+                "M",
+                "Q",
+                "H"
+              ]
+            },
+            "size": {
+              "default": 1024,
+              "type": "integer",
+              "minimum": 128,
+              "maximum": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "image": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "mode": {
+              "default": "none",
+              "type": "string",
+              "enum": [
+                "none",
+                "logo",
+                "blend"
+              ]
+            },
+            "src": {
+              "type": "string",
+              "maxLength": 8000000
+            },
+            "scale": {
+              "default": 0.22,
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 0.3
+            },
+            "veil": {
+              "default": 0.3,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.9
+            }
+          },
+          "additionalProperties": false
+        },
+        "output": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "format": {
+              "default": "png",
+              "type": "string",
+              "enum": [
+                "png",
+                "svg"
+              ]
+            },
+            "file": {
+              "type": "string",
+              "maxLength": 260
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "text"
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "text"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "type": "number",
+          "const": 1
+        },
+        "style": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "preset": {
+              "type": "string",
+              "enum": [
+                "classic",
+                "alley",
+                "mint",
+                "coral",
+                "dusk",
+                "ink"
+              ]
+            },
+            "dotColor": {
+              "default": "#000000",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "cornerColor": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "backgroundColor": {
+              "default": "#FFFFFF",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "dotShape": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "dot"
+              ]
+            },
+            "cornerStyle": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "circle"
+              ]
+            },
+            "quietZone": {
+              "default": 4,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 16
+            },
+            "errorCorrection": {
+              "default": "M",
+              "type": "string",
+              "enum": [
+                "L",
+                "M",
+                "Q",
+                "H"
+              ]
+            },
+            "size": {
+              "default": 1024,
+              "type": "integer",
+              "minimum": 128,
+              "maximum": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "image": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "mode": {
+              "default": "none",
+              "type": "string",
+              "enum": [
+                "none",
+                "logo",
+                "blend"
+              ]
+            },
+            "src": {
+              "type": "string",
+              "maxLength": 8000000
+            },
+            "scale": {
+              "default": 0.22,
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 0.3
+            },
+            "veil": {
+              "default": 0.3,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.9
+            }
+          },
+          "additionalProperties": false
+        },
+        "output": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "format": {
+              "default": "png",
+              "type": "string",
+              "enum": [
+                "png",
+                "svg"
+              ]
+            },
+            "file": {
+              "type": "string",
+              "maxLength": 260
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "vcard"
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "firstName": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "lastName": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "organization": {
+              "type": "string",
+              "maxLength": 150
+            },
+            "title": {
+              "type": "string",
+              "maxLength": 150
+            },
+            "phones": {
+              "maxItems": 4,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^\\+?[0-9 ()\\-.]{3,25}$"
+              }
+            },
+            "emails": {
+              "maxItems": 4,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "email",
+                "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+              }
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "street": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "city": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "region": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "postalCode": {
+              "type": "string",
+              "maxLength": 20
+            },
+            "country": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "note": {
+              "type": "string",
+              "maxLength": 500
+            }
+          },
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "type": "number",
+          "const": 1
+        },
+        "style": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "preset": {
+              "type": "string",
+              "enum": [
+                "classic",
+                "alley",
+                "mint",
+                "coral",
+                "dusk",
+                "ink"
+              ]
+            },
+            "dotColor": {
+              "default": "#000000",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "cornerColor": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "backgroundColor": {
+              "default": "#FFFFFF",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "dotShape": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "dot"
+              ]
+            },
+            "cornerStyle": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "circle"
+              ]
+            },
+            "quietZone": {
+              "default": 4,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 16
+            },
+            "errorCorrection": {
+              "default": "M",
+              "type": "string",
+              "enum": [
+                "L",
+                "M",
+                "Q",
+                "H"
+              ]
+            },
+            "size": {
+              "default": 1024,
+              "type": "integer",
+              "minimum": 128,
+              "maximum": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "image": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "mode": {
+              "default": "none",
+              "type": "string",
+              "enum": [
+                "none",
+                "logo",
+                "blend"
+              ]
+            },
+            "src": {
+              "type": "string",
+              "maxLength": 8000000
+            },
+            "scale": {
+              "default": 0.22,
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 0.3
+            },
+            "veil": {
+              "default": 0.3,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.9
+            }
+          },
+          "additionalProperties": false
+        },
+        "output": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "format": {
+              "default": "png",
+              "type": "string",
+              "enum": [
+                "png",
+                "svg"
+              ]
+            },
+            "file": {
+              "type": "string",
+              "maxLength": 260
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "wifi"
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "ssid": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 32
+            },
+            "password": {
+              "type": "string",
+              "maxLength": 63
+            },
+            "security": {
+              "default": "WPA",
+              "type": "string",
+              "enum": [
+                "WPA",
+                "WEP",
+                "nopass"
+              ]
+            },
+            "hidden": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "ssid"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "type": "number",
+          "const": 1
+        },
+        "style": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "preset": {
+              "type": "string",
+              "enum": [
+                "classic",
+                "alley",
+                "mint",
+                "coral",
+                "dusk",
+                "ink"
+              ]
+            },
+            "dotColor": {
+              "default": "#000000",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "cornerColor": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "backgroundColor": {
+              "default": "#FFFFFF",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "dotShape": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "dot"
+              ]
+            },
+            "cornerStyle": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "circle"
+              ]
+            },
+            "quietZone": {
+              "default": 4,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 16
+            },
+            "errorCorrection": {
+              "default": "M",
+              "type": "string",
+              "enum": [
+                "L",
+                "M",
+                "Q",
+                "H"
+              ]
+            },
+            "size": {
+              "default": 1024,
+              "type": "integer",
+              "minimum": 128,
+              "maximum": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "image": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "mode": {
+              "default": "none",
+              "type": "string",
+              "enum": [
+                "none",
+                "logo",
+                "blend"
+              ]
+            },
+            "src": {
+              "type": "string",
+              "maxLength": 8000000
+            },
+            "scale": {
+              "default": 0.22,
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 0.3
+            },
+            "veil": {
+              "default": 0.3,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.9
+            }
+          },
+          "additionalProperties": false
+        },
+        "output": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "format": {
+              "default": "png",
+              "type": "string",
+              "enum": [
+                "png",
+                "svg"
+              ]
+            },
+            "file": {
+              "type": "string",
+              "maxLength": 260
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "email"
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "to": {
+              "type": "string",
+              "format": "email",
+              "pattern": "^(?:[A-Za-z0-9_'+\\-]+\\.)*[A-Za-z0-9_'+\\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+            },
+            "subject": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "body": {
+              "type": "string",
+              "maxLength": 1000
+            }
+          },
+          "required": [
+            "to"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "type": "number",
+          "const": 1
+        },
+        "style": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "preset": {
+              "type": "string",
+              "enum": [
+                "classic",
+                "alley",
+                "mint",
+                "coral",
+                "dusk",
+                "ink"
+              ]
+            },
+            "dotColor": {
+              "default": "#000000",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "cornerColor": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "backgroundColor": {
+              "default": "#FFFFFF",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "dotShape": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "dot"
+              ]
+            },
+            "cornerStyle": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "circle"
+              ]
+            },
+            "quietZone": {
+              "default": 4,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 16
+            },
+            "errorCorrection": {
+              "default": "M",
+              "type": "string",
+              "enum": [
+                "L",
+                "M",
+                "Q",
+                "H"
+              ]
+            },
+            "size": {
+              "default": 1024,
+              "type": "integer",
+              "minimum": 128,
+              "maximum": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "image": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "mode": {
+              "default": "none",
+              "type": "string",
+              "enum": [
+                "none",
+                "logo",
+                "blend"
+              ]
+            },
+            "src": {
+              "type": "string",
+              "maxLength": 8000000
+            },
+            "scale": {
+              "default": 0.22,
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 0.3
+            },
+            "veil": {
+              "default": 0.3,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.9
+            }
+          },
+          "additionalProperties": false
+        },
+        "output": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "format": {
+              "default": "png",
+              "type": "string",
+              "enum": [
+                "png",
+                "svg"
+              ]
+            },
+            "file": {
+              "type": "string",
+              "maxLength": 260
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "sms"
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "phone": {
+              "type": "string",
+              "pattern": "^\\+?[0-9 ()\\-.]{3,25}$"
+            },
+            "message": {
+              "type": "string",
+              "maxLength": 500
+            }
+          },
+          "required": [
+            "phone"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "type": "number",
+          "const": 1
+        },
+        "style": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "preset": {
+              "type": "string",
+              "enum": [
+                "classic",
+                "alley",
+                "mint",
+                "coral",
+                "dusk",
+                "ink"
+              ]
+            },
+            "dotColor": {
+              "default": "#000000",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "cornerColor": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "backgroundColor": {
+              "default": "#FFFFFF",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "dotShape": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "dot"
+              ]
+            },
+            "cornerStyle": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "circle"
+              ]
+            },
+            "quietZone": {
+              "default": 4,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 16
+            },
+            "errorCorrection": {
+              "default": "M",
+              "type": "string",
+              "enum": [
+                "L",
+                "M",
+                "Q",
+                "H"
+              ]
+            },
+            "size": {
+              "default": 1024,
+              "type": "integer",
+              "minimum": 128,
+              "maximum": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "image": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "mode": {
+              "default": "none",
+              "type": "string",
+              "enum": [
+                "none",
+                "logo",
+                "blend"
+              ]
+            },
+            "src": {
+              "type": "string",
+              "maxLength": 8000000
+            },
+            "scale": {
+              "default": 0.22,
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 0.3
+            },
+            "veil": {
+              "default": 0.3,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.9
+            }
+          },
+          "additionalProperties": false
+        },
+        "output": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "format": {
+              "default": "png",
+              "type": "string",
+              "enum": [
+                "png",
+                "svg"
+              ]
+            },
+            "file": {
+              "type": "string",
+              "maxLength": 260
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "phone"
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "phone": {
+              "type": "string",
+              "pattern": "^\\+?[0-9 ()\\-.]{3,25}$"
+            }
+          },
+          "required": [
+            "phone"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "type": "number",
+          "const": 1
+        },
+        "style": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "preset": {
+              "type": "string",
+              "enum": [
+                "classic",
+                "alley",
+                "mint",
+                "coral",
+                "dusk",
+                "ink"
+              ]
+            },
+            "dotColor": {
+              "default": "#000000",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "cornerColor": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "backgroundColor": {
+              "default": "#FFFFFF",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "dotShape": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "dot"
+              ]
+            },
+            "cornerStyle": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "circle"
+              ]
+            },
+            "quietZone": {
+              "default": 4,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 16
+            },
+            "errorCorrection": {
+              "default": "M",
+              "type": "string",
+              "enum": [
+                "L",
+                "M",
+                "Q",
+                "H"
+              ]
+            },
+            "size": {
+              "default": 1024,
+              "type": "integer",
+              "minimum": 128,
+              "maximum": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "image": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "mode": {
+              "default": "none",
+              "type": "string",
+              "enum": [
+                "none",
+                "logo",
+                "blend"
+              ]
+            },
+            "src": {
+              "type": "string",
+              "maxLength": 8000000
+            },
+            "scale": {
+              "default": 0.22,
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 0.3
+            },
+            "veil": {
+              "default": 0.3,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.9
+            }
+          },
+          "additionalProperties": false
+        },
+        "output": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "format": {
+              "default": "png",
+              "type": "string",
+              "enum": [
+                "png",
+                "svg"
+              ]
+            },
+            "file": {
+              "type": "string",
+              "maxLength": 260
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "geo"
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90
+            },
+            "longitude": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180
+            },
+            "label": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          "required": [
+            "latitude",
+            "longitude"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "type": "number",
+          "const": 1
+        },
+        "style": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "preset": {
+              "type": "string",
+              "enum": [
+                "classic",
+                "alley",
+                "mint",
+                "coral",
+                "dusk",
+                "ink"
+              ]
+            },
+            "dotColor": {
+              "default": "#000000",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "cornerColor": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "backgroundColor": {
+              "default": "#FFFFFF",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "dotShape": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "dot"
+              ]
+            },
+            "cornerStyle": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "circle"
+              ]
+            },
+            "quietZone": {
+              "default": 4,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 16
+            },
+            "errorCorrection": {
+              "default": "M",
+              "type": "string",
+              "enum": [
+                "L",
+                "M",
+                "Q",
+                "H"
+              ]
+            },
+            "size": {
+              "default": 1024,
+              "type": "integer",
+              "minimum": 128,
+              "maximum": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "image": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "mode": {
+              "default": "none",
+              "type": "string",
+              "enum": [
+                "none",
+                "logo",
+                "blend"
+              ]
+            },
+            "src": {
+              "type": "string",
+              "maxLength": 8000000
+            },
+            "scale": {
+              "default": 0.22,
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 0.3
+            },
+            "veil": {
+              "default": 0.3,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.9
+            }
+          },
+          "additionalProperties": false
+        },
+        "output": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "format": {
+              "default": "png",
+              "type": "string",
+              "enum": [
+                "png",
+                "svg"
+              ]
+            },
+            "file": {
+              "type": "string",
+              "maxLength": 260
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "event"
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "start": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2})?$"
+            },
+            "end": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2})?$"
+            },
+            "location": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "description": {
+              "type": "string",
+              "maxLength": 1000
+            }
+          },
+          "required": [
+            "title",
+            "start"
+          ],
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "type": "number",
+          "const": 1
+        },
+        "style": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "preset": {
+              "type": "string",
+              "enum": [
+                "classic",
+                "alley",
+                "mint",
+                "coral",
+                "dusk",
+                "ink"
+              ]
+            },
+            "dotColor": {
+              "default": "#000000",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "cornerColor": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "backgroundColor": {
+              "default": "#FFFFFF",
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "dotShape": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "dot"
+              ]
+            },
+            "cornerStyle": {
+              "default": "square",
+              "type": "string",
+              "enum": [
+                "square",
+                "rounded",
+                "circle"
+              ]
+            },
+            "quietZone": {
+              "default": 4,
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 16
+            },
+            "errorCorrection": {
+              "default": "M",
+              "type": "string",
+              "enum": [
+                "L",
+                "M",
+                "Q",
+                "H"
+              ]
+            },
+            "size": {
+              "default": 1024,
+              "type": "integer",
+              "minimum": 128,
+              "maximum": 4096
+            }
+          },
+          "additionalProperties": false
+        },
+        "image": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "mode": {
+              "default": "none",
+              "type": "string",
+              "enum": [
+                "none",
+                "logo",
+                "blend"
+              ]
+            },
+            "src": {
+              "type": "string",
+              "maxLength": 8000000
+            },
+            "scale": {
+              "default": 0.22,
+              "type": "number",
+              "minimum": 0.1,
+              "maximum": 0.3
+            },
+            "veil": {
+              "default": 0.3,
+              "type": "number",
+              "minimum": 0,
+              "maximum": 0.9
+            }
+          },
+          "additionalProperties": false
+        },
+        "output": {
+          "default": {},
+          "type": "object",
+          "properties": {
+            "format": {
+              "default": "png",
+              "type": "string",
+              "enum": [
+                "png",
+                "svg"
+              ]
+            },
+            "file": {
+              "type": "string",
+              "maxLength": 260
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "content"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

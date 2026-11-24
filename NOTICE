@@ -1,0 +1,15 @@
+Bandit Codes uses these open source libraries and fonts. Each keeps its own license.
+
+Runtime (shipped in the app or needed by the command line tool)
+- qrcode 1.5.4 (MIT): builds the QR code module matrix
+- @zxing/library 0.23.0 (Apache-2.0): reads the finished code back to check that it scans
+- zod 4.6.7 (MIT): validates the config
+- next 16.4.6 (MIT) and react / react-dom 19.3.1 (MIT): the web app
+- @napi-rs/canvas 1.1.1 (MIT): turns SVG into PNG in the command line tool
+- Self-hosted fonts (SIL Open Font License 1.1, full text in public/fonts/OFL.txt): Platypi, Instrument Sans, and Fira Code, served from this site with no outside font requests
+
+Development only
+- typescript (Apache-2.0), vitest (MIT), tsup (MIT), tsx (MIT), @types packages (MIT), playwright-core (Apache-2.0), sharp (Apache-2.0)
+
+Apache-2.0 text: https://www.apache.org/licenses/LICENSE-2.0
+SIL OFL 1.1 text: https://openfontlicense.org

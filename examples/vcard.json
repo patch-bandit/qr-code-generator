@@ -1,0 +1,31 @@
+{
+  "$schema": "../schema/bandit-codes.schema.json",
+  "version": 1,
+  "type": "vcard",
+  "content": {
+    "firstName": "Jordan",
+    "lastName": "Sample",
+    "organization": "Example Co, Ltd; Sample Division",
+    "title": "Head of Examples",
+    "phones": [
+      "+1 555 0100"
+    ],
+    "emails": [
+      "jordan@example.com"
+    ],
+    "url": "https://example.com",
+    "street": "100 Sample Street",
+    "city": "Exampleton",
+    "region": "EX",
+    "postalCode": "00000",
+    "country": "Exampleland",
+    "note": "Line one\nLine two; with, punctuation"
+  },
+  "style": {
+    "preset": "mint"
+  },
+  "output": {
+    "format": "png",
+    "file": "vcard.png"
+  }
+}

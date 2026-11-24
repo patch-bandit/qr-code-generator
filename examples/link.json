@@ -1,0 +1,15 @@
+{
+  "$schema": "../schema/bandit-codes.schema.json",
+  "version": 1,
+  "type": "link",
+  "content": {
+    "url": "https://example.com/welcome"
+  },
+  "style": {
+    "preset": "alley"
+  },
+  "output": {
+    "format": "png",
+    "file": "link.png"
+  }
+}

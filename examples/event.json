@@ -1,0 +1,19 @@
+{
+  "$schema": "../schema/bandit-codes.schema.json",
+  "version": 1,
+  "type": "event",
+  "content": {
+    "title": "Example Open House",
+    "start": "2027-03-14T10:00",
+    "end": "2027-03-14T12:30",
+    "location": "100 Sample Street, Exampleton",
+    "description": "Come by, say hello; bring a friend."
+  },
+  "style": {
+    "preset": "mint"
+  },
+  "output": {
+    "format": "png",
+    "file": "event.png"
+  }
+}

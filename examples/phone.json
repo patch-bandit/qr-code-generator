@@ -1,0 +1,15 @@
+{
+  "$schema": "../schema/bandit-codes.schema.json",
+  "version": 1,
+  "type": "phone",
+  "content": {
+    "phone": "+1 555 0102"
+  },
+  "style": {
+    "preset": "classic"
+  },
+  "output": {
+    "format": "png",
+    "file": "phone.png"
+  }
+}

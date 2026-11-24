@@ -1,0 +1,17 @@
+{
+  "$schema": "../schema/bandit-codes.schema.json",
+  "version": 1,
+  "type": "email",
+  "content": {
+    "to": "hello@example.com",
+    "subject": "Hello there",
+    "body": "Sent from a Bandit Codes code."
+  },
+  "style": {
+    "preset": "dusk"
+  },
+  "output": {
+    "format": "png",
+    "file": "email.png"
+  }
+}

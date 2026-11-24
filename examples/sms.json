@@ -1,0 +1,16 @@
+{
+  "$schema": "../schema/bandit-codes.schema.json",
+  "version": 1,
+  "type": "sms",
+  "content": {
+    "phone": "+1 555 0101",
+    "message": "Text me back"
+  },
+  "style": {
+    "preset": "coral"
+  },
+  "output": {
+    "format": "png",
+    "file": "sms.png"
+  }
+}

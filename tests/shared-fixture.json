@@ -1,0 +1,1126 @@
+{
+ "about": "Shared fixture for the Bandit Codes app and the WordPress QR plugin (Bandit Codes Links). Each case has a kind, an input, ok, and a note. kind is destination, base, slug or merge. A destination case may carry campaign (source, medium, campaign, content): the 2,000-character limit counts the address after the tags are added, and the tag rules apply. A merge case carries campaign and expect: the address after the tags are merged. ok is true when the checker must accept the input, and false when it must refuse. Expected values are written by hand and never computed by either checker. Append only: add cases, never edit an existing one without telling both sides.",
+ "version": 1,
+ "cases": [
+  {
+   "kind": "destination",
+   "input": "https://example.com",
+   "ok": true,
+   "note": "plain https host"
+  },
+  {
+   "kind": "destination",
+   "input": "http://example.com/",
+   "ok": true,
+   "note": "plain http"
+  },
+  {
+   "kind": "destination",
+   "input": "HTTPS://EXAMPLE.COM/Path",
+   "ok": true,
+   "note": "upper-case scheme and host"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com:8080/x?a=1#frag",
+   "ok": true,
+   "note": "port, query and fragment"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com:65535/",
+   "ok": true,
+   "note": "highest port"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com:1/",
+   "ok": true,
+   "note": "lowest port"
+  },
+  {
+   "kind": "destination",
+   "input": "https://sub.example.com./",
+   "ok": true,
+   "note": "one trailing dot on the host"
+  },
+  {
+   "kind": "destination",
+   "input": "https://203.0.113.5/x",
+   "ok": true,
+   "note": "dotted IP address"
+  },
+  {
+   "kind": "destination",
+   "input": "https://0.0.0.0/",
+   "ok": true,
+   "note": "dotted IP address, zeros"
+  },
+  {
+   "kind": "destination",
+   "input": "https://255.255.255.255/",
+   "ok": true,
+   "note": "dotted IP address, top octet"
+  },
+  {
+   "kind": "destination",
+   "input": "https://xn--bcher-kva.example/",
+   "ok": true,
+   "note": "converted (xn--) host"
+  },
+  {
+   "kind": "destination",
+   "input": "https://a-b.example/",
+   "ok": true,
+   "note": "hyphen in a host label"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/a%20b",
+   "ok": true,
+   "note": "existing %-code in the path"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/?a=b&c=d",
+   "ok": true,
+   "note": "query with two keys"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/path#frag",
+   "ok": true,
+   "note": "fragment"
+  },
+  {
+   "kind": "destination",
+   "input": "",
+   "ok": false,
+   "note": "empty"
+  },
+  {
+   "kind": "destination",
+   "input": "https://",
+   "ok": false,
+   "note": "no host"
+  },
+  {
+   "kind": "destination",
+   "input": "https:///example.com",
+   "ok": false,
+   "note": "empty host before a slash"
+  },
+  {
+   "kind": "destination",
+   "input": "https:example.com",
+   "ok": false,
+   "note": "no slashes"
+  },
+  {
+   "kind": "destination",
+   "input": "http:/example.com",
+   "ok": false,
+   "note": "one slash"
+  },
+  {
+   "kind": "destination",
+   "input": "javascript:alert(1)",
+   "ok": false,
+   "note": "javascript scheme"
+  },
+  {
+   "kind": "destination",
+   "input": "JAVASCRIPT:alert(1)",
+   "ok": false,
+   "note": "javascript scheme, upper case"
+  },
+  {
+   "kind": "destination",
+   "input": "data:text/html,hi",
+   "ok": false,
+   "note": "data scheme"
+  },
+  {
+   "kind": "destination",
+   "input": "file:///etc/passwd",
+   "ok": false,
+   "note": "file scheme"
+  },
+  {
+   "kind": "destination",
+   "input": "ftp://example.com/",
+   "ok": false,
+   "note": "ftp scheme"
+  },
+  {
+   "kind": "destination",
+   "input": "mailto:a@example.com",
+   "ok": false,
+   "note": "mailto scheme"
+  },
+  {
+   "kind": "destination",
+   "input": "//example.com/x",
+   "ok": false,
+   "note": "protocol-relative"
+  },
+  {
+   "kind": "destination",
+   "input": "example.com/x",
+   "ok": false,
+   "note": "no scheme"
+  },
+  {
+   "kind": "destination",
+   "input": "https://user:pass@example.com/",
+   "ok": false,
+   "note": "username and password"
+  },
+  {
+   "kind": "destination",
+   "input": "https://user@example.com/",
+   "ok": false,
+   "note": "username only"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com@evil.com/",
+   "ok": false,
+   "note": "a host name before an at sign"
+  },
+  {
+   "kind": "destination",
+   "input": "https://good.com\\@evil.com",
+   "ok": false,
+   "note": "backslash"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/a b",
+   "ok": false,
+   "note": "space in the path"
+  },
+  {
+   "kind": "destination",
+   "input": "https://exa mple.com/",
+   "ok": false,
+   "note": "space in the host"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/a\tb",
+   "ok": false,
+   "note": "tab"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/a\nb",
+   "ok": false,
+   "note": "line feed"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/a\rb",
+   "ok": false,
+   "note": "carriage return"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/a\u0001b",
+   "ok": false,
+   "note": "control character"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/a\u007fb",
+   "ok": false,
+   "note": "delete character"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/\"x",
+   "ok": false,
+   "note": "double quote"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/'x",
+   "ok": false,
+   "note": "single quote"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/<x",
+   "ok": false,
+   "note": "less-than sign"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/>x",
+   "ok": false,
+   "note": "greater-than sign"
+  },
+  {
+   "kind": "destination",
+   "input": "https://2130706433/",
+   "ok": false,
+   "note": "all-number host (127.0.0.1)"
+  },
+  {
+   "kind": "destination",
+   "input": "https://4294967296/",
+   "ok": false,
+   "note": "all-number host beyond 32 bits"
+  },
+  {
+   "kind": "destination",
+   "input": "https://0177.0.0.1/",
+   "ok": false,
+   "note": "octal-looking part"
+  },
+  {
+   "kind": "destination",
+   "input": "https://0x7f.0.0.1/",
+   "ok": false,
+   "note": "hex part"
+  },
+  {
+   "kind": "destination",
+   "input": "https://0x7f.1/",
+   "ok": false,
+   "note": "hex host"
+  },
+  {
+   "kind": "destination",
+   "input": "https://1.2.3.256/",
+   "ok": false,
+   "note": "octet above 255"
+  },
+  {
+   "kind": "destination",
+   "input": "https://1.2.3/",
+   "ok": false,
+   "note": "three-part number host"
+  },
+  {
+   "kind": "destination",
+   "input": "https://1.2.3.4.5/",
+   "ok": false,
+   "note": "five-part number host"
+  },
+  {
+   "kind": "destination",
+   "input": "https://01.2.3.4/",
+   "ok": false,
+   "note": "leading zero"
+  },
+  {
+   "kind": "destination",
+   "input": "https://1.2.3.04/",
+   "ok": false,
+   "note": "leading zero in the last part"
+  },
+  {
+   "kind": "destination",
+   "input": "https://127.1/",
+   "ok": false,
+   "note": "short number host"
+  },
+  {
+   "kind": "destination",
+   "input": "https://1.2.3.4./",
+   "ok": false,
+   "note": "trailing dot after an IP address"
+  },
+  {
+   "kind": "destination",
+   "input": "https://[::1]/",
+   "ok": false,
+   "note": "IPv6 literal"
+  },
+  {
+   "kind": "destination",
+   "input": "https://[2001:db8::1]:8080/",
+   "ok": false,
+   "note": "IPv6 literal with a port"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com:0/",
+   "ok": false,
+   "note": "port zero"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com:65536/",
+   "ok": false,
+   "note": "port above 65535"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com:99999/",
+   "ok": false,
+   "note": "port far above 65535"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com:abc/",
+   "ok": false,
+   "note": "port not a number"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com:/",
+   "ok": false,
+   "note": "empty port"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com:-1/",
+   "ok": false,
+   "note": "negative port"
+  },
+  {
+   "kind": "destination",
+   "input": "https://b\u00fccher.example/",
+   "ok": false,
+   "note": "non-English host"
+  },
+  {
+   "kind": "destination",
+   "input": "https://\u4f8b\u3048.jp/",
+   "ok": false,
+   "note": "non-English host, other script"
+  },
+  {
+   "kind": "destination",
+   "input": "https://exa_mple.com/",
+   "ok": false,
+   "note": "underscore in the host"
+  },
+  {
+   "kind": "destination",
+   "input": "https://.example.com/",
+   "ok": false,
+   "note": "host starts with a dot"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example..com/",
+   "ok": false,
+   "note": "empty host label"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com../",
+   "ok": false,
+   "note": "two trailing dots"
+  },
+  {
+   "kind": "destination",
+   "input": "https://%65xample.com/",
+   "ok": false,
+   "note": "%-code in the host"
+  },
+  {
+   "kind": "destination",
+   "input": "https://exam!ple.com/",
+   "ok": false,
+   "note": "exclamation mark in the host"
+  },
+  {
+   "kind": "destination",
+   "input": "https://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.example/",
+   "ok": false,
+   "note": "host label of 64 characters"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "ok": true,
+   "note": "exactly 2,000 characters"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "ok": false,
+   "note": "2,001 characters"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "ok": true,
+   "note": "1,920 characters with no tags",
+   "campaign": {
+    "source": "",
+    "medium": "",
+    "campaign": "",
+    "content": ""
+   }
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "ok": false,
+   "note": "tags push the address over 2,000 characters",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "spring",
+    "content": ""
+   }
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/",
+   "ok": true,
+   "note": "source and medium",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   }
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/",
+   "ok": true,
+   "note": "all four tags",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "spring",
+    "content": "a"
+   }
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/",
+   "ok": true,
+   "note": "tags of only spaces count as empty",
+   "campaign": {
+    "source": " ",
+    "medium": "  ",
+    "campaign": "",
+    "content": ""
+   }
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/",
+   "ok": false,
+   "note": "source without medium",
+   "campaign": {
+    "source": "flyer",
+    "medium": "",
+    "campaign": "",
+    "content": ""
+   }
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/",
+   "ok": false,
+   "note": "medium without source",
+   "campaign": {
+    "source": "",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   }
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/",
+   "ok": false,
+   "note": "campaign without source and medium",
+   "campaign": {
+    "source": "",
+    "medium": "",
+    "campaign": "spring",
+    "content": ""
+   }
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/",
+   "ok": true,
+   "note": "tag of 100 characters",
+   "campaign": {
+    "source": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   }
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/",
+   "ok": false,
+   "note": "tag of 101 characters",
+   "campaign": {
+    "source": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   }
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/",
+   "ok": true,
+   "note": "50 characters outside the basic plane count as 100",
+   "campaign": {
+    "source": "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   }
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/",
+   "ok": false,
+   "note": "51 characters outside the basic plane count as 102",
+   "campaign": {
+    "source": "\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00\ud83d\ude00",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   }
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/",
+   "ok": false,
+   "note": "control character in a tag",
+   "campaign": {
+    "source": "fly\u0001er",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   }
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/qr/",
+   "ok": true,
+   "note": "ordinary base"
+  },
+  {
+   "kind": "base",
+   "input": "http://example.com/a/b/",
+   "ok": true,
+   "note": "two path parts"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/my.dir/",
+   "ok": true,
+   "note": "dot inside a part"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/a_b~c-d/",
+   "ok": true,
+   "note": "underscore, tilde and hyphen"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/QR/",
+   "ok": true,
+   "note": "upper-case letters in the path"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/..hidden/",
+   "ok": true,
+   "note": "part that starts with two dots but is not a dot segment"
+  },
+  {
+   "kind": "base",
+   "input": "https://sub.example.com/a/b/c/",
+   "ok": true,
+   "note": "three path parts"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/qr",
+   "ok": false,
+   "note": "no trailing slash"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/",
+   "ok": false,
+   "note": "path of a slash alone"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com",
+   "ok": false,
+   "note": "no path"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/qr/?x=1",
+   "ok": false,
+   "note": "query"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/qr/#x",
+   "ok": false,
+   "note": "fragment"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com:8080/qr/",
+   "ok": false,
+   "note": "port"
+  },
+  {
+   "kind": "base",
+   "input": "https://user@example.com/qr/",
+   "ok": false,
+   "note": "username part"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/qr/../x/",
+   "ok": false,
+   "note": "dot-dot segment"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/./qr/",
+   "ok": false,
+   "note": "dot segment"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com//qr/",
+   "ok": false,
+   "note": "double slash at the start"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/qr//x/",
+   "ok": false,
+   "note": "double slash inside"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/q r/",
+   "ok": false,
+   "note": "space"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/q%20r/",
+   "ok": false,
+   "note": "%-code"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/qr$/",
+   "ok": false,
+   "note": "dollar sign"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/q;r/",
+   "ok": false,
+   "note": "semicolon"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com/qr/{x}/",
+   "ok": false,
+   "note": "braces"
+  },
+  {
+   "kind": "base",
+   "input": "ftp://example.com/qr/",
+   "ok": false,
+   "note": "ftp scheme"
+  },
+  {
+   "kind": "base",
+   "input": "//example.com/qr/",
+   "ok": false,
+   "note": "protocol-relative"
+  },
+  {
+   "kind": "base",
+   "input": "https://example.com\\qr/",
+   "ok": false,
+   "note": "backslash"
+  },
+  {
+   "kind": "base",
+   "input": "https://2130706433/qr/",
+   "ok": false,
+   "note": "all-number host"
+  },
+  {
+   "kind": "base",
+   "input": "https://[::1]/qr/",
+   "ok": false,
+   "note": "IPv6 literal"
+  },
+  {
+   "kind": "base",
+   "input": "",
+   "ok": false,
+   "note": "empty"
+  },
+  {
+   "kind": "slug",
+   "input": "a",
+   "ok": true,
+   "note": "one letter"
+  },
+  {
+   "kind": "slug",
+   "input": "0",
+   "ok": true,
+   "note": "one digit"
+  },
+  {
+   "kind": "slug",
+   "input": "spring-flyer",
+   "ok": true,
+   "note": "hyphen"
+  },
+  {
+   "kind": "slug",
+   "input": "a_b",
+   "ok": true,
+   "note": "underscore"
+  },
+  {
+   "kind": "slug",
+   "input": "a-b_c",
+   "ok": true,
+   "note": "hyphen and underscore"
+  },
+  {
+   "kind": "slug",
+   "input": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "ok": true,
+   "note": "64 characters"
+  },
+  {
+   "kind": "slug",
+   "input": "",
+   "ok": false,
+   "note": "empty"
+  },
+  {
+   "kind": "slug",
+   "input": "Spring",
+   "ok": false,
+   "note": "upper case"
+  },
+  {
+   "kind": "slug",
+   "input": "-a",
+   "ok": false,
+   "note": "starts with a hyphen"
+  },
+  {
+   "kind": "slug",
+   "input": "_a",
+   "ok": false,
+   "note": "starts with an underscore"
+  },
+  {
+   "kind": "slug",
+   "input": "a b",
+   "ok": false,
+   "note": "space"
+  },
+  {
+   "kind": "slug",
+   "input": "a.b",
+   "ok": false,
+   "note": "dot"
+  },
+  {
+   "kind": "slug",
+   "input": "a/b",
+   "ok": false,
+   "note": "slash"
+  },
+  {
+   "kind": "slug",
+   "input": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "ok": false,
+   "note": "65 characters"
+  },
+  {
+   "kind": "slug",
+   "input": "abc\n",
+   "ok": false,
+   "note": "trailing line feed"
+  },
+  {
+   "kind": "slug",
+   "input": "\u00fcn\u00ef",
+   "ok": false,
+   "note": "non-English letters"
+  },
+  {
+   "kind": "slug",
+   "input": "a%20",
+   "ok": false,
+   "note": "%-code"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   },
+   "expect": "https://example.com/p?utm_source=flyer&utm_medium=print",
+   "ok": true,
+   "note": "source and medium"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "spring",
+    "content": "a"
+   },
+   "expect": "https://example.com/p?utm_source=flyer&utm_medium=print&utm_campaign=spring&utm_content=a",
+   "ok": true,
+   "note": "four tags in order"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p?a=1",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   },
+   "expect": "https://example.com/p?a=1&utm_source=flyer&utm_medium=print",
+   "ok": true,
+   "note": "existing query kept"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p?a=1&",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   },
+   "expect": "https://example.com/p?a=1&utm_source=flyer&utm_medium=print",
+   "ok": true,
+   "note": "existing query ends in an ampersand"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p?UTM_Source=x",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   },
+   "expect": "https://example.com/p?UTM_Source=x&utm_medium=print",
+   "ok": true,
+   "note": "an existing utm key wins, in any case"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p?utm%5Fsource=x",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   },
+   "expect": "https://example.com/p?utm%5Fsource=x&utm_medium=print",
+   "ok": true,
+   "note": "an encoded existing key counts"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p#top",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   },
+   "expect": "https://example.com/p?utm_source=flyer&utm_medium=print#top",
+   "ok": true,
+   "note": "fragment kept after the tags"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p?a=1#top",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   },
+   "expect": "https://example.com/p?a=1&utm_source=flyer&utm_medium=print#top",
+   "ok": true,
+   "note": "query and fragment kept"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p?",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   },
+   "expect": "https://example.com/p?utm_source=flyer&utm_medium=print",
+   "ok": true,
+   "note": "a lone question mark"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p?%zz=1",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   },
+   "expect": "https://example.com/p?%zz=1&utm_source=flyer&utm_medium=print",
+   "ok": true,
+   "note": "a key that cannot be decoded stays as written"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p",
+   "campaign": {
+    "source": "Spring Flyer!",
+    "medium": "a&b",
+    "campaign": "",
+    "content": ""
+   },
+   "expect": "https://example.com/p?utm_source=Spring%20Flyer!&utm_medium=a%26b",
+   "ok": true,
+   "note": "values are encoded like encodeURIComponent"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "",
+    "content": "(x)*'"
+   },
+   "expect": "https://example.com/p?utm_source=flyer&utm_medium=print&utm_content=(x)*'",
+   "ok": true,
+   "note": "! * ' ( ) stay unescaped"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p",
+   "campaign": {
+    "source": "fl\u00e9yer",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   },
+   "expect": "https://example.com/p?utm_source=fl%C3%A9yer&utm_medium=print",
+   "ok": true,
+   "note": "non-English letters are encoded as UTF-8"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p",
+   "campaign": {
+    "source": " flyer ",
+    "medium": " print ",
+    "campaign": "",
+    "content": ""
+   },
+   "expect": "https://example.com/p?utm_source=flyer&utm_medium=print",
+   "ok": true,
+   "note": "values are trimmed"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p",
+   "campaign": {
+    "source": "",
+    "medium": "",
+    "campaign": "",
+    "content": ""
+   },
+   "expect": "https://example.com/p",
+   "ok": true,
+   "note": "no tags leaves the address unchanged"
+  },
+  {
+   "kind": "merge",
+   "input": "https://example.com/p?a=1#x",
+   "campaign": {
+    "source": " ",
+    "medium": " ",
+    "campaign": "",
+    "content": ""
+   },
+   "expect": "https://example.com/p?a=1#x",
+   "ok": true,
+   "note": "tags of only spaces leave the address unchanged"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/",
+   "campaign": {
+    "source": "joe's flyer",
+    "medium": "print",
+    "campaign": "",
+    "content": ""
+   },
+   "ok": false,
+   "note": "apostrophe in a tag is refused, because the final address may not hold one"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "it's spring",
+    "content": ""
+   },
+   "ok": false,
+   "note": "apostrophe in the campaign tag is refused"
+  },
+  {
+   "kind": "destination",
+   "input": "https://example.com/",
+   "campaign": {
+    "source": "flyer",
+    "medium": "print",
+    "campaign": "",
+    "content": "say \"hi\""
+   },
+   "ok": true,
+   "note": "a double quote is encoded as %22 and is fine"
+  }
+ ]
+}

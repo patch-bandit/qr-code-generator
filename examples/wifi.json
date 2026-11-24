@@ -1,0 +1,17 @@
+{
+  "$schema": "../schema/bandit-codes.schema.json",
+  "version": 1,
+  "type": "wifi",
+  "content": {
+    "ssid": "ExampleNet",
+    "password": "correct-horse;battery:staple",
+    "security": "WPA"
+  },
+  "style": {
+    "preset": "ink"
+  },
+  "output": {
+    "format": "png",
+    "file": "wifi.png"
+  }
+}

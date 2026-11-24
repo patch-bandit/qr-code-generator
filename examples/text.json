@@ -1,0 +1,15 @@
+{
+  "$schema": "../schema/bandit-codes.schema.json",
+  "version": 1,
+  "type": "text",
+  "content": {
+    "text": "Hello from Bandit Codes. Plain text works too."
+  },
+  "style": {
+    "preset": "classic"
+  },
+  "output": {
+    "format": "png",
+    "file": "text.png"
+  }
+}

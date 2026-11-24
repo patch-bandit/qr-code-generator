@@ -1,0 +1,11 @@
+.agent/
+node_modules/
+.next/
+out/
+dist/
+*.log
+tests/.tmp/
+.mutation/
+next-env.d.ts
+*.tsbuildinfo
+evidence/

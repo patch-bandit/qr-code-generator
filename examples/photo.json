@@ -1,0 +1,24 @@
+{
+  "$schema": "../schema/bandit-codes.schema.json",
+  "version": 1,
+  "type": "link",
+  "content": {
+    "url": "https://example.com/photo"
+  },
+  "style": {
+    "dotColor": "#1E1033",
+    "cornerColor": "#1E1033",
+    "backgroundColor": "#FFFFFF",
+    "dotShape": "dot",
+    "cornerStyle": "rounded"
+  },
+  "image": {
+    "mode": "blend",
+    "src": "./assets/sample-photo.png",
+    "veil": 0.35
+  },
+  "output": {
+    "format": "png",
+    "file": "photo.png"
+  }
+}

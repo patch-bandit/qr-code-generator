@@ -1,0 +1,17 @@
+{
+  "$schema": "../schema/bandit-codes.schema.json",
+  "version": 1,
+  "type": "geo",
+  "content": {
+    "latitude": 47.6205,
+    "longitude": -122.3493,
+    "label": "Sample Landmark"
+  },
+  "style": {
+    "preset": "alley"
+  },
+  "output": {
+    "format": "png",
+    "file": "geo.png"
+  }
+}
